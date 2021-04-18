@@ -6,6 +6,9 @@
 - style : nơi đặt các file css/scss
  + Sử dụng scss trong react : npm i -D sass 
  + Utils : Chứa các common function để tái sử dụng trong project
++ Layouts : Chứ các component layout
++ auth: Chứa các component và các hàm xử lý liên quan đến authentication
+
  * Có redux 
  - contants : Chứa contants của project và type của redux
  - action : Chứa action của redux 

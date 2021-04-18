@@ -1,4 +1,4 @@
-import { GET_COURSES_FAILURE, GET_COURSES_REQUEST, GET_COURSES_SUCCESS } from "./constants/courses";
+import { GET_COURSES_FAILURE, GET_COURSES_REQUEST, GET_COURSES_SUCCESS } from "../constants/courses";
 
 // Courses reducer
 const initialState = {

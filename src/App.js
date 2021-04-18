@@ -1,22 +1,34 @@
 
 import './App.css';
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
+
 //Pages
-import Home from './pages/Home'
-import Courses from './pages/Courses'
-import Course from './pages/Course'
+// import Home from './pages/Home'
+// import Courses from './pages/Courses'
+// import Course from './pages/Course'
+// import AdminCourses from './pages/AdminCourses';
+// import AdminUser from './pages/AdminUser';
 import LoginPgae from './pages/LoginPage'
 
 //Layout 
 import AppLayout from './Layout/AppLayout';
 import AdminLayout from './Layout/AdminLayout';
-import AdminCourses from './pages/AdminCourses';
-import AdminUser from './pages/AdminUser';
 
+//Custom Router
+import AdminRoute from './auth/AdminRoute';
+
+// SỬ dụng lazyload 
+const Home = lazy (()=> import('./pages/Home'));
+const Courses = lazy (()=> import('./pages/Courses'));
+const Course = lazy (()=> import('./pages/Course'));
+const AdminCourses = lazy(()=> import('./pages/AdminCourses'));
+const AdminUser = lazy(()=> import('./pages/AdminUser'))
 
 function App() {
   return (
+    <Suspense fallback={<div>Loadding....</div>}>
     <BrowserRouter>
       <Switch>
         {/* Route Admin */}
@@ -26,13 +38,13 @@ function App() {
               <Switch>
                 <Redirect exact from="/admin" to="/admin/courses"/>
 
-                <Route path="/admin/courses">
+                <AdminRoute path="/admin/courses">
                   <AdminCourses/>
-                </Route>
+                </AdminRoute>
 
-                <Route path="/admin/user">
+                <AdminRoute path="/admin/user">
                   <AdminUser/>
-                </Route>
+                </AdminRoute>
 
               </Switch>
             </AdminLayout>
@@ -63,6 +75,7 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
+    </Suspense>
   );
 }
 
